@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>강남스마일안과 | 한번의 선택, 평생의 선명함</title>
+<meta name="description" content="수술 후 통증, 회복기간, 시력 결과까지 강남스마일안과가 약속합니다. 스마일라식 무료 상담 신청." />
+
+<link rel="preconnect" href="https://cdn.jsdelivr.net" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css" />
+<style>
+  @font-face{
+    font-family:'GmarketSans';
+    font-weight:500;
+    src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-display:swap;
+  }
+  @font-face{
+    font-family:'GmarketSans';
+    font-weight:700;
+    src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
+    font-display:swap;
+  }
+
+  :root{
+    --primary:#001deb;
+    --primary-deep:#0020ff;
+    --bg-main:#ebedff;
+    --bg-navy:#151a3f;
+    --bg-navy-deep:#001741;
+    --cyan:#00dceb;
+    --yellow:#fcffa2;
+    --pink:#fd2168;
+    --ink:#111111;
+    --gray:#6c6c6c;
+    --gray-60:#9a9a9a;
+    --line:#d8d9da;
+    --bg-soft:#f5f5f8;
+    --card-blue:#cfd7e6;
+    --device-light:#f5f4f9;
+    --device-navy:#0c1e80;
+    --white:#ffffff;
+    --max:1080px;
+  }
+
+  *,*::before,*::after{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Pretendard Variable','Pretendard',-apple-system,sans-serif;
+    color:var(--ink);
+    background:var(--white);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;}
+  button{font-family:inherit;cursor:pointer;border:none;}
+  input{font-family:inherit;}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 20px;}
+  .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;}
+
+  /* ---------- Brand logo ---------- */
+  .brand-logo{height:16px;width:auto;display:block;}
+  .brand-logo-hero{height:20px;width:auto;display:block;}
+  .brand-hana-badge{display:flex;align-items:center;gap:6px;}
+  .brand-hana-icon{
+    width:16px;height:16px;border-radius:50%;background:#00857d;color:#fff;
+    font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  }
+  .brand-hana-text{font-size:13px;font-weight:800;color:var(--ink);white-space:nowrap;letter-spacing:-.2px;}
+
+  /* ---------- Buttons ---------- */
+  .btn-primary{
+    background:var(--primary);
+    color:#fff;
+    border-radius:24px;
+    padding:12px 18px;
+    font-weight:600;
+    font-size:15px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow:0 5px 10px rgba(0,32,255,0.28);
+    transition:transform .15s ease, box-shadow .15s ease;
+    white-space:nowrap;
+  }
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 16px rgba(0,32,255,0.35);}
+  .btn-block{
+    width:100%;
+    background:var(--primary);
+    color:#fff;
+    border-radius:14px;
+    padding:18px;
+    font-size:17px;
+    font-weight:600;
+    text-align:center;
+  }
+  .btn-block:hover{background:var(--primary-deep);}
+
+  /* ---------- Header ---------- */
+  .site-header{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:13px 20px;
+    background:white;
+    transition:background-color .25s ease, backdrop-filter .25s ease, box-shadow .25s ease;
+  }
+  .site-header.is-scrolled{
+    background:rgba(255,255,255,0.7);
+    backdrop-filter:blur(8px);
+    -webkit-backdrop-filter:blur(8px);
+    box-shadow:0 2px 12px rgba(0,0,0,0.06);
+  }
+  .site-header .brand-logo{height:16px;}
+
+  main{padding-top:0;}
+
+  /* ---------- Eyebrow / heading helpers ---------- */
+  .eyebrow{
+    font-size:14px;font-weight:600;color:var(--primary);margin:0 0 12px;letter-spacing:.2px;
+  }
+  .eyebrow.cyan{color:var(--cyan);}
+  h2.heading{
+    font-size:26px;font-weight:700;line-height:1.3;margin:0 0 14px;color:var(--ink);
+  }
+  h2.heading.on-dark{color:#fff;}
+
+  /* ---------- Gradient zone (hero + consult + diff share one backdrop) ---------- */
+  .gradient-zone{
+    background:linear-gradient(180deg,#fff 0%, rgba(54,81,255,0.06) 55%, rgba(54,81,255,0.06) 100%);
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    padding:0;
+    text-align:center;
+    overflow:hidden;
+  }
+  .hero-badge-row{
+    display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:28px;
+  }
+  .hero-badge-row img.cert{height:20px;width:auto;mix-blend-mode:darken;}
+  .hero-badge-row .divider{width:1px;height:14px;background:#ccc;}
+
+  .hero h1{
+    font-family:'GmarketSans',sans-serif;
+    font-weight:500;
+    font-size:26px;
+    margin:0 0 6px;
+    line-height:1.25;
+  }
+  .hero h1 .line1{display:block;}
+  .hero h1 .accent{
+    display:block;
+    font-weight:700;
+    color:var(--primary);
+    font-size:32px;
+    margin-top:22px;
+  }
+  .accent .ch{position:relative;display:inline-block;}
+  .accent .ch::before{
+    content:"";
+    position:absolute;
+    top: -500px;px;
+    left:50%;
+    transform:translateX(-50%);
+    width:4px;height:4px;border-radius:50%;
+    background:var(--primary);
+  }
+  .accent .sp{display:inline-block;width:.28em;}
+  .hero p.sub{
+    font-size:14px;line-height:1.5;color:rgba(17,17,17,0.6);margin:8px 0 8px;
+  }
+  .hero-image{
+    border-radius:0;
+    overflow:hidden;
+    aspect-ratio:9/16;
+    margin:0;
+  }
+  .hero-image img{width:100%;height:100%;object-fit:cover;display:block;}
+
+  /* ---------- Consult card ---------- */
+  .consult{
+    background:var(--bg-navy);
+    color:#fff;
+    padding:36px 20px 40px;
+    border-radius:24px 24px 0 0;
+    position:relative;
+    z-index:2;
+    /* hero-image is 100vw wide at 3:4 ratio -> height = 133.33vw; cover 40% of it so 60% stays visible */
+    margin-top:-26vw;
+  }
+  .consult .head p.small{font-size:13px;font-weight:300;color:#fff;opacity:.85;margin:8px 0 0;}
+  .consult .title{font-size:22px;font-weight:700;line-height:1.3;margin:0;}
+  .consult .title .hl{color:var(--yellow);}
+
+  .form-top{
+    margin-top:24px;
+    display:flex;flex-direction:column;gap:16px;
+  }
+  .form-fields{order:1;display:flex;flex-direction:column;gap:14px;}
+  .field{display:flex;flex-direction:column;}
+  .field label{
+    display:flex;align-items:center;gap:6px;font-size:14px;font-weight:600;margin-bottom:8px;
+  }
+  .field label .req{width:5px;height:5px;border-radius:50%;background:var(--pink);display:inline-block;}
+  .field input{
+    width:100%;
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:12px 12px;
+    font-size:14px;
+    color:var(--ink);
+  }
+  .field input::placeholder{color:var(--gray-60);}
+
+  .consult-agree{
+    order:2;
+    display:flex;align-items:center;gap:8px;font-size:14px;font-weight:500;color:#fff;
+  }
+  .consult-agree input{accent-color:var(--primary);width:16px;height:16px;flex-shrink:0;}
+  .consult-agree .more{text-decoration:underline;white-space:nowrap;flex-shrink:0;}
+
+  .consult-submit{order:3;}
+
+  .reservation .consult-agree{color:var(--ink);}
+
+  /* ---------- Target (recommended-for) ---------- */
+  .target{
+    position:relative;
+    background:var(--bg-navy);
+    padding:60px 20px;
+    overflow:hidden;
+  }
+  .target .bgimg{
+    position:absolute;inset:0;
+    background-size:cover;background-position:center;
+    opacity:.5;
+  }
+  .target .bgimg::after{content:"";position:absolute;inset:0;background:rgba(0,23,65,0.7);}
+  .target .inner{position:relative;z-index:1;max-width:1004px;margin:0 auto;}
+  .target-card{
+    background:var(--card-blue);
+    border-radius:20px;
+    padding:24px 20px;
+    display:flex;flex-direction:column;gap:20px;
+    margin-top:20px;
+  }
+  .target-item{display:flex;align-items:center;gap:16px;}
+  .target-grid-2{display:flex;flex-direction:column;gap:16px;}
+  .target-item .icon{
+    background:#111;border-radius:11px;width:50px;height:50px;flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;overflow:hidden;
+  }
+  .target-item .icon img{width:100%;height:100%;object-fit:contain;}
+  .target-item h3{font-size:16px;margin:0 0 4px;color:var(--ink);}
+  .target-item p{font-size:13px;margin:0;color:var(--ink);opacity:.8;}
+
+  /* ---------- Differentiators ---------- */
+  .diff{padding:80px 20px;}
+  .diff .inner{max-width:1004px;margin:0 auto;}
+  .diff-grid{display:flex;flex-direction:column;gap:32px;margin-top:20px;}
+  .diff-img{border-radius:16px;overflow:hidden;aspect-ratio:326/195;}
+  .diff-img img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease;display:block;}
+  .diff-card:hover .diff-img img{transform:scale(1.08);}
+  .diff-card h3{font-size:18px;font-weight:700;margin:16px 0 8px;line-height:1.3;}
+  .diff-card p{font-size:14px;color:var(--gray);line-height:1.5;margin:0;}
+
+  /* ---------- Smile Lasik banner ---------- */
+  .lasik{padding:160px 20px 80px 20px;}
+  .lasik .inner{max-width:1004px;margin:0 auto;}
+  .lasik-video{
+    margin-top:24px;border-radius:20px;overflow:hidden;position:relative;
+    aspect-ratio:375/210;background:#000;
+  }
+  .lasik-video iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block;}
+  .lasik p.sub{font-size:14px;color:var(--ink);line-height:1.5;margin:0;}
+
+  /* ---------- Devices marquee ---------- */
+  .devices{padding:60px 0;background:#fff;overflow:hidden;}
+  .devices .inner{max-width:1004px;margin:0 auto;padding:0;}
+  .device-scroll{margin-top:24px;overflow:hidden;position:relative;width:100%;}
+  .device-scroll::before,.device-scroll::after{
+    content:"";position:absolute;top:0;bottom:0;width:40px;z-index:2;pointer-events:none;
+  }
+  .device-scroll::before{left:0;background:linear-gradient(90deg,#fff,rgba(255,255,255,0));}
+  .device-scroll::after{right:0;background:linear-gradient(270deg,#fff,rgba(255,255,255,0));}
+  .device-track{
+    display:flex;gap:12px;width:max-content;
+    animation:scrollDevices 28s linear infinite;
+  }
+  .device-scroll:hover .device-track{animation-play-state:paused;}
+  @keyframes scrollDevices{
+    from{transform:translateX(0);}
+    to{transform:translateX(-50%);}
+  }
+  .device-card{
+    position:relative;width:170px;height:170px;border-radius:15px;overflow:hidden;
+    flex-shrink:0;background:var(--device-light);
+  }
+  .device-card img{width:100%;height:100%;object-fit:cover;}
+  .device-card::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(0,0,0,0) 55%,rgba(0,0,0,0.5) 100%);
+  }
+  .device-card span{
+    position:absolute;left:16px;bottom:14px;color:#fff;font-weight:700;font-size:14px;z-index:1;
+  }
+
+  /* ---------- Specialists ---------- */
+  .specialists{padding:80px 20px;background:#fff;}
+  .specialists .inner{max-width:1004px;margin:0 auto;}
+  .doctor-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:24px;}
+  .doctor-card{
+    position:relative;border-radius:15px;overflow:hidden;aspect-ratio:242/380;
+    background:var(--device-light);
+  }
+  .doctor-card img{width:100%;height:109%;object-fit:cover;}
+  .doctor-card::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(0,0,0,0) 55%,rgba(0,0,0,0.4) 100%);
+  }
+  .doctor-card .info{
+    position:absolute;left:0;right:0;bottom:14px;text-align:center;color:#fff;z-index:1;
+  }
+  .doctor-card .info .name{font-size:16px;font-weight:700;letter-spacing:2px;}
+  .doctor-card .info .role{font-size:12px;letter-spacing:3px;opacity:.9;margin-top:4px;}
+
+  /* ---------- Benefit steps ---------- */
+  .benefit{
+    position:relative;padding:60px 20px;color:#fff;overflow:hidden;
+    background:var(--bg-navy);
+  }
+  .benefit .bgimg{position:absolute;inset:0;background-size:cover;background-position:center;opacity:.55;}
+  .benefit .bgimg::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,0.5);}
+  .benefit .inner{position:relative;z-index:1;max-width:1004px;margin:0 auto;text-align:center;}
+  .benefit .eyebrow{color:var(--cyan);justify-content:center;}
+  .benefit h2{color:#fff;}
+  .steps{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:32px;}
+  .step-num{
+    width:32px;height:32px;border-radius:20px;background:var(--primary);
+    display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;
+    margin:0 auto 12px;
+  }
+  .step h4{font-size:14px;margin:0 0 6px;line-height:1.3;}
+  .step p{font-size:12px;opacity:.8;margin:0;}
+
+  /* ---------- Reservation (final) ---------- */
+  .reservation{background:var(--bg-soft);padding:60px 20px;}
+  .reservation .inner{max-width:1004px;margin:0 auto;}
+  .reservation-card{
+    background:#fff;border-radius:20px;padding:30px 20px;
+    box-shadow:2px 4px 12px rgba(0,0,0,0.08);
+    margin-top:24px;
+  }
+  .reservation-card .field label{color:#333;}
+  .reservation p.sub{font-size:14px;color:var(--gray);margin:8px 0 0;}
+  .reservation .desc{font-size:14px;line-height:1.5;color:var(--ink);margin:12px 0 0;}
+
+  /* ---------- Footer ---------- */
+  .site-footer{
+    position:relative;background:var(--bg-navy-deep);color:rgba(255,255,255,0.6);
+    padding:36px 20px 24px;font-size:12px;line-height:1.7;text-align:center;
+  }
+  .footer-wave{width:100%;display:block;margin-bottom:-2px;}
+  .site-footer strong{color:#fff;}
+  .site-footer .disclaimer{margin-top:10px;opacity:.7;}
+
+  /* ============================================================
+     DESKTOP (>= 900px) — mirrors the PC frame proportions
+     ============================================================ */
+  @media (min-width:900px){
+    .wrap{padding:0 40px;}
+
+    .site-header{padding:13px 60px;}
+    .site-header .brand-logo{height:20px;}
+    .site-header .btn-primary{padding:14px 26px;font-size:16px;}
+
+    .hero-badge-row{margin-bottom:44px;}
+    .brand-hana-icon{width:20px;height:20px;font-size:11px;}
+    .brand-hana-text{font-size:16px;}
+    .brand-logo-hero{height:24px;}
+    .hero h1{
+      font-size:36px;
+      display:flex;align-items:baseline;justify-content:center;gap:14px;flex-wrap:nowrap;white-space:nowrap;
+    }
+    .hero h1 .accent{font-size:48px;display:inline-block;margin-top:0;}
+    .accent .ch::before{top:-10px;width:6px;height:6px;}
+    .hero p.sub{font-size:20px;max-width:760px;margin-left:auto;margin-right:auto;}
+    .hero-image{
+      aspect-ratio:1920/800;
+    }
+
+    .consult{
+      max-width:1100px;margin:-80px auto 0;border-radius:24px;padding:30px 56px;
+      position:relative;z-index:2;
+    }
+    .consult-inner{display:flex;justify-content:space-between;align-items:center;gap:40px;}
+    .consult .head{flex-shrink:0;max-width:260px;text-align:left;}
+    .consult .title{font-size:30px;}
+    .consult-form-wrap{flex:1;max-width:700px;}
+
+    .form-top{
+      flex-direction:row;flex-wrap:wrap;align-items:stretch;gap:16px 20px;
+    }
+    .form-fields{order:1;flex:1;min-width:0;justify-content:center;}
+    .field{flex-direction:row;align-items:center;gap:10px;}
+    .field label{margin-bottom:0;flex-shrink:0;width:64px;}
+    .consult-submit{
+      order:2;flex:0 0 auto;width:200px;border-radius:18px;font-size:18px;
+      display:flex;align-items:center;justify-content:center;height:auto;
+    }
+    .consult-agree{
+      order:3;flex:0 0 100%;white-space:nowrap;
+      margin-top:8px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.25);
+    }
+
+    .target{padding:100px 40px;}
+    .target-card{padding:40px;flex-direction:column;}
+    .target-item h3{font-size:24px;}
+    .target-item p{font-size:15px;}
+    .target-item .icon{width:56px;height:56px;}
+    .target-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:40px;}
+    h2.heading{font-size:34px;}
+
+    .diff-grid{flex-direction:row;gap:24px;}
+    .diff-card{flex:1;}
+    .diff-card h3{font-size:22px;}
+    .diff-card p{font-size:15px;}
+
+    .lasik-inner-flex{display:flex;align-items:center;gap:40px;}
+    .lasik-text{flex:1;}
+    .lasik-video{flex:1.4;aspect-ratio:572/320;margin-top:0;}
+    .lasik p.sub{font-size:16px;}
+
+    .devices{padding:80px 0;}
+    .device-card{width:280px;height:280px;}
+    .device-card span{font-size:18px;left:28px;bottom:22px;}
+
+    .doctor-grid{grid-template-columns:repeat(4,1fr);gap:12px;}
+    .doctor-card .info .name{font-size:20px;}
+
+    .benefit{padding:100px 40px;}
+    .steps{grid-template-columns:repeat(4,1fr);gap:32px;}
+    .step-num{width:40px;height:40px;font-size:18px;}
+    .step h4{font-size:18px;}
+    .step p{font-size:15px;}
+
+    .reservation{padding:100px 40px;}
+    .reservation .inner{max-width:1004px;}
+    .reservation-inner-flex{display:flex;align-items:center;justify-content:space-between;gap:60px;}
+    .reservation-text{flex:1;}
+    .reservation-card{flex:1;max-width:520px;margin-top:0;padding:32px 40px;}
+    .reservation .form-top{flex-direction:column;align-items:stretch;}
+    .reservation .form-fields{flex-direction:column;}
+    .reservation .field{flex-direction:column;align-items:stretch;gap:0;}
+    .reservation .field label{margin-bottom:8px;width:auto;}
+    .reservation .consult-agree{flex:none;border-top:none;margin-top:0;padding-top:0;white-space:normal;order:2;}
+    .reservation .consult-submit{width:100%;border-radius:14px;order:2;}
+    .reservation .btn-block{width:100%;}
+  }
+
+  @media (min-width:1300px){
+    .hero h1{font-size:42px;}
+    .hero h1 .accent{font-size:56px;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .device-track{animation:none;}
+    html{scroll-behavior:auto;}
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="#top" aria-label="강남스마일안과 홈">
+    <img class="brand-logo" src="assets/logo.svg" alt="강남스마일안과" />
+  </a>
+  <button class="btn-primary" onclick="document.getElementById('reservation').scrollIntoView({behavior:'smooth'})">무료로 상담받기</button>
+</header>
+
+<main id="top">
+
+<div class="gradient-zone">
+  <!-- HERO -->
+  <section class="hero">
+    <!-- Text kept for SEO/accessibility only; visually the image below already contains this content -->
+    <div class="sr-only">
+      <div class="brand-hana-badge">
+        <span class="brand-hana-icon">하</span>
+        <span class="brand-hana-text">하나카드</span>
+      </div>
+      <h1>한번의 선택, 평생의 선명함</h1>
+      <p>수술 후 통증, 회복기간, 시력 결과까지 강남스마일안과가 약속합니다.</p>
+    </div>
+
+    <div class="hero-image">
+      <picture>
+        <source media="(min-width:900px)" srcset="assets/hero-visual.png" />
+        <img src="assets/hero-visual-mobile.png" alt="한번의 선택, 평생의 선명함 - 수술 후 통증, 회복기간, 시력 결과까지 강남스마일안과가 약속합니다." width="1080" height="1440" />
+      </picture>
+    </div>
+  </section>
+
+  <!-- CONSULT CARD -->
+  <section class="consult" id="consult">
+    <div class="consult-inner">
+      <div class="head">
+        <p class="title">지금 바로<br /><span class="hl">상담 신청</span> 하세요!</p>
+        <p class="small">무료 상담으로 궁금증을 해결하세요</p>
+      </div>
+
+      <form class="consult-form-wrap" onsubmit="return handleConsultSubmit(event)">
+        <div class="form-top">
+          <div class="form-fields">
+            <div class="field">
+              <label>이름 <span class="req"></span></label>
+              <input type="text" name="name" placeholder="이름을 입력하세요." required />
+            </div>
+            <div class="field">
+              <label>연락처 <span class="req"></span></label>
+              <input type="tel" name="phone" placeholder="연락처 ( - 없이 입력하세요.)" pattern="[0-9]{9,11}" required />
+            </div>
+          </div>
+          <label class="consult-agree">
+            <input type="checkbox" required />
+            <span>개인정보 수집 및 이용에 관한 내용을 확인하고 동의함</span>
+            <a href="#privacy" class="more">자세히보기</a>
+          </label>
+          <button type="submit" class="btn-block consult-submit">무료로 상담받기</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- 차별점 -->
+  <section class="diff" id="diff">
+    <div class="inner">
+      <p class="eyebrow">차별점</p>
+      <h2 class="heading">왜 강남스마일안과를<br />선택해야 할까요?</h2>
+
+      <div class="diff-grid">
+        <div class="diff-card">
+          <div class="diff-img"><img src="https://www.figma.com/api/mcp/asset/6adeb047-82fb-44e0-81e6-22f686983d9e" alt="풍부한 임상경험" /></div>
+          <h3>풍부한 임상경험,<br />5년 연속 최다 수술 기록</h3>
+          <p>최신장비 5세대 ATOS를 활용한<br />스마일수술 최다 기록 보유</p>
+        </div>
+        <div class="diff-card">
+          <div class="diff-img"><img src="https://www.figma.com/api/mcp/asset/6846af9d-e774-4126-a8da-3956e260fe79" alt="목표시력 달성" /></div>
+          <h3>스마일수술<br />목표시력 99% 달성</h3>
+          <p>ESCRS,KSCRS,KOS<br />논문을 통해 목표 근시교정98%,<br />난시교정 99% 달성 발표</p>
+        </div>
+        <div class="diff-card">
+          <div class="diff-img"><img src="https://www.figma.com/api/mcp/asset/6c3b9e0d-f8db-4bf3-ac10-3917e650bb53" alt="OPEN 수술실" /></div>
+          <h3>신뢰를 더한<br />OPEN 수술실</h3>
+          <p>투명함을 지향하는 안과,<br />개방형 수술실<br />모든 과정을 직접 확인할 수 있습니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+  <!-- TARGET / 추천대상 -->
+  <section class="target" id="target">
+    <div class="bgimg" style="background-image:url('https://www.figma.com/api/mcp/asset/f7733975-b938-4ac4-8fb1-ba9d9922946f');"></div>
+    <div class="inner">
+      <p class="eyebrow cyan">추천대상</p>
+      <h2 class="heading on-dark">혹시 이런것 때문에<br />불편하지 않으신가요?</h2>
+
+      <div class="target-card">
+        <div class="target-grid-2">
+          <div class="target-item">
+            <div class="icon"><img src="https://www.figma.com/api/mcp/asset/fcf676f5-4243-4554-98c0-19f47374775c" alt="" /></div>
+            <div><h3>안경 및 렌즈</h3><p>안경 및 렌즈가 불편하신 분</p></div>
+          </div>
+          <div class="target-item">
+            <div class="icon"><img src="https://www.figma.com/api/mcp/asset/54425ebd-794b-4189-8d81-4e0711f48694" alt="" /></div>
+            <div><h3>안구건조증</h3><p>렌즈로 인해 건조하고 불편하신 분</p></div>
+          </div>
+          <div class="target-item">
+            <div class="icon"><img src="https://www.figma.com/api/mcp/asset/5dbcde8a-9a1a-4a09-bb7e-3dcdb5cb0fc6" alt="" /></div>
+            <div><h3>운동 및 활동</h3><p>운동, 활동 시 안경이나 렌즈가 불편하신 분</p></div>
+          </div>
+          <div class="target-item">
+            <div class="icon"><img src="https://www.figma.com/api/mcp/asset/ed27f5a9-42b8-442c-88f9-b3b14cedf859" alt="" /></div>
+            <div><h3>일상 복귀</h3><p>빠른 시일내로 일상복귀가 걱정되시는 분</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SMILE LASIK -->
+  <section class="lasik" id="lasik" >
+    <div class="inner">
+      <div class="lasik-inner-flex">
+        <div class="lasik-text">
+          <p class="eyebrow">SMILE LASIK</p>
+          <h2 class="heading">단 5분이면<br />새로운 세상이 열립니다.</h2>
+          <p class="sub">최소 절개 기반의 빠른 수술과 빠른 회복으로<br />다음날 일상 복귀 가능</p>
+        </div>
+        <div class="lasik-video">
+          <iframe
+            src="https://www.youtube.com/embed/AMPDMAUuL5E"
+            title="스마일라식 소개 영상"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+            loading="lazy"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 진료시스템 / devices -->
+  <section class="devices" id="devices">
+    <div class="inner">
+      <p class="eyebrow">진료시스템</p>
+      <h2 class="heading">대학병원 수준의<br />첨단 검사장비</h2>
+    </div>
+    <div class="device-scroll">
+      <div class="device-track" id="deviceTrack">
+        <div class="device-card"><img src="https://www.figma.com/api/mcp/asset/a421d9e3-8c56-4ee5-bd73-b6e2bea64307" alt="ARK-510a" /><span>ARK-510a</span></div>
+        <div class="device-card"><img src="https://www.figma.com/api/mcp/asset/ecc7c87b-9a68-47c7-a034-14f4595623a3" alt="AMARIS RED 1050RS" /><span>AMARIS RED 1050RS</span></div>
+        <div class="device-card"><img src="https://www.figma.com/api/mcp/asset/611f7fe9-e01c-479c-b0ea-894578ac6a38" alt="Amaris 750s" /><span>Amaris 750s</span></div>
+        <div class="device-card"><img src="https://www.figma.com/api/mcp/asset/86011ef0-07f9-4c25-9e43-b6f60e634190" alt="SCHWIND ATOS" /><span>SCHWIND ATOS</span></div>
+        <div class="device-card"><img src="https://www.figma.com/api/mcp/asset/10059df1-f8cc-4e1b-9046-297dbce5444e" alt="SCOUT" /><span>SCOUT</span></div>
+        <div class="device-card"><img src="https://www.figma.com/api/mcp/asset/bc2d2dff-3927-4983-b1ac-4e4faff693c1" alt="Leica f19" /><span>Leica f19</span></div>
+        <div class="device-card"><img src="https://www.figma.com/api/mcp/asset/2880e446-9c3d-413d-95ca-e5cdca2b2410" alt="Centurion" /><span>Centurion</span></div>
+        <!-- duplicate for seamless marquee loop -->
+        <div class="device-card" aria-hidden="true"><img src="https://www.figma.com/api/mcp/asset/a421d9e3-8c56-4ee5-bd73-b6e2bea64307" alt="" /><span>ARK-510a</span></div>
+        <div class="device-card" aria-hidden="true"><img src="https://www.figma.com/api/mcp/asset/ecc7c87b-9a68-47c7-a034-14f4595623a3" alt="" /><span>AMARIS RED 1050RS</span></div>
+        <div class="device-card" aria-hidden="true"><img src="https://www.figma.com/api/mcp/asset/611f7fe9-e01c-479c-b0ea-894578ac6a38" alt="" /><span>Amaris 750s</span></div>
+        <div class="device-card" aria-hidden="true"><img src="https://www.figma.com/api/mcp/asset/86011ef0-07f9-4c25-9e43-b6f60e634190" alt="" /><span>SCHWIND ATOS</span></div>
+        <div class="device-card" aria-hidden="true"><img src="https://www.figma.com/api/mcp/asset/10059df1-f8cc-4e1b-9046-297dbce5444e" alt="" /><span>SCOUT</span></div>
+        <div class="device-card" aria-hidden="true"><img src="https://www.figma.com/api/mcp/asset/bc2d2dff-3927-4983-b1ac-4e4faff693c1" alt="" /><span>Leica f19</span></div>
+        <div class="device-card" aria-hidden="true"><img src="https://www.figma.com/api/mcp/asset/2880e446-9c3d-413d-95ca-e5cdca2b2410" alt="" /><span>Centurion</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPECIALIST -->
+  <section class="specialists" id="specialists">
+    <div class="inner">
+      <p class="eyebrow">SPECIALIST</p>
+      <h2 class="heading">강남스마일안과<br />대표 의료진 소개</h2>
+
+      <div class="doctor-grid">
+        <div class="doctor-card">
+          <img src="https://www.figma.com/api/mcp/asset/30428533-9784-4eb0-897a-f91f685d7ce8" alt="염동주 대표원장" />
+          <div class="info"><div class="name">염동주</div><div class="role">대표원장</div></div>
+        </div>
+        <div class="doctor-card">
+          <img src="https://www.figma.com/api/mcp/asset/e08b8b20-3681-4036-b8dd-c662725e33c3" alt="윤효성 대표원장" />
+          <div class="info"><div class="name">윤효성</div><div class="role">대표원장</div></div>
+        </div>
+        <div class="doctor-card">
+          <img src="https://www.figma.com/api/mcp/asset/3052da70-4bab-4f7f-9c18-72c683c2db79" alt="정상준 대표원장" />
+          <div class="info"><div class="name">정상준</div><div class="role">대표원장</div></div>
+        </div>
+        <div class="doctor-card">
+          <img src="https://www.figma.com/api/mcp/asset/6df26be5-a3a9-4b8d-b3f7-cb1ca804d500" alt="양형모 대표원장" />
+          <div class="info"><div class="name">양형모</div><div class="role">대표원장</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 예약링크 특별혜택 -->
+  <section class="benefit" id="benefit">
+    <div class="bgimg" style="background-image:url('assets/benefit-bg.jpg');"></div>
+    <div class="inner">
+      <p class="eyebrow">예약링크 특별혜택</p>
+      <h2 class="heading">하나카드 회원들을 위한 특별한 혜택</h2>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <h4>70여가지<br />정밀검사 지원</h4>
+          <p>*약 1~2시간 소요</p>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <h4>우대가<br />최대 적용</h4>
+          <p>*본 이벤트에 한함</p>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <h4>당일수술<br />추가할인</h4>
+          <p>*당일검사부터 수술까지</p>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <h4>ATOS<br />정품인증 카드</h4>
+          <p>*뉴스마일라식</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL RESERVATION -->
+  <section class="reservation" id="reservation">
+    <div class="inner">
+      <div class="reservation-inner-flex">
+        <div class="reservation-text">
+          <p class="eyebrow">RESERVATION</p>
+          <h2 class="heading">강남스마일안과와<br />더 선명한 일상을 시작하세요.</h2>
+          <p class="desc">상담신청을 남겨주시면 순차적으로 전화드리고 있습니다.<br />예약 확정 후 내원해주시기 바랍니다.</p>
+        </div>
+
+        <div class="reservation-card">
+          <p class="title" style="font-size:22px;font-weight:700;">지금 바로<br /><span style="color:var(--primary);">상담 신청</span> 하세요!</p>
+          <p class="sub">무료 상담으로 궁금증을 해결하세요</p>
+
+          <form onsubmit="return handleConsultSubmit(event)">
+            <div class="form-top">
+              <div class="form-fields">
+                <div class="field">
+                  <label>이름 <span class="req"></span></label>
+                  <input type="text" name="name" placeholder="이름을 입력하세요." required />
+                </div>
+                <div class="field">
+                  <label>연락처 <span class="req"></span></label>
+                  <input type="tel" name="phone" placeholder="연락처 ( - 없이 입력하세요.)" pattern="[0-9]{9,11}" required />
+                </div>
+              </div>
+              <label class="consult-agree">
+                <input type="checkbox" required />
+                <span>(필수) 개인정보 수집 및 이용 동의서</span>
+                <a href="#privacy" class="more" style="color:var(--primary);">자세히보기</a>
+              </label>
+              <button type="submit" class="btn-block consult-submit">무료로 상담받기</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <p><strong>강남스마일안과</strong> · 염동주 · 윤효성 · 정상준 · 양형모 대표원장</p>
+  <p class="disclaimer">시술의 효과 및 만족도는 개인의 신체 조건에 따라 차이가 있을 수 있습니다.<br />ⓒ 2026 강남스마일안과. All rights reserved.</p>
+</footer>
+
+<script>
+  function handleConsultSubmit(e){
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value.trim();
+    if(!name){ return false; }
+    alert(name + '님, 상담 신청이 접수되었습니다. 순차적으로 연락드리겠습니다.');
+    form.reset();
+    return false;
+  }
+
+  // Pause marquee on touch for mobile usability
+  const track = document.getElementById('deviceTrack');
+  if(track){
+    track.addEventListener('touchstart', ()=> track.style.animationPlayState='paused');
+    track.addEventListener('touchend', ()=> track.style.animationPlayState='running');
+  }
+
+  // GNB: white at top, blurred once the page is scrolled
+  (function(){
+    const header = document.querySelector('.site-header');
+    if(!header) return;
+    const SCROLL_THRESHOLD = 10;
+    function updateHeader(){
+      if(window.scrollY > SCROLL_THRESHOLD){
+        header.classList.add('is-scrolled');
+      } else {
+        header.classList.remove('is-scrolled');
+      }
+    }
+    updateHeader();
+    window.addEventListener('scroll', updateHeader, { passive:true });
+  })();
+</script>
+
+</body>
+</html>

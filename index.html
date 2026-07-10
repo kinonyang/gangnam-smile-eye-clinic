@@ -103,16 +103,18 @@
     position:fixed;top:0;left:0;right:0;z-index:100;
     display:flex;align-items:center;justify-content:space-between;
     padding:13px 20px;
-    background:white;
+    background:rgba(255,255,255,0.2);
+    backdrop-filter:blur(6px);
+    -webkit-backdrop-filter:blur(6px);
     transition:background-color .25s ease, backdrop-filter .25s ease, box-shadow .25s ease;
   }
   .site-header.is-scrolled{
-    background:rgba(255,255,255,0.7);
-    backdrop-filter:blur(8px);
-    -webkit-backdrop-filter:blur(8px);
+    background:rgba(255,255,255,0.6);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(12px);
     box-shadow:0 2px 12px rgba(0,0,0,0.06);
   }
-  .site-header .brand-logo{height:16px;}
+  .site-header .brand-logo{height:16px;transition:opacity .2s ease;}
 
   main{padding-top:0;}
 
@@ -215,18 +217,27 @@
     font-size:14px;
     color:var(--ink);
   }
+  .field input:focus{
+    outline:none;
+    border-color:var(--primary);
+    box-shadow:0 0 0 3px rgba(0,29,235,0.15);
+  }
   .field input::placeholder{color:var(--gray-60);}
 
   .consult-agree{
     order:2;
     display:flex;align-items:center;gap:8px;font-size:14px;font-weight:500;color:#fff;
   }
-  .consult-agree input{accent-color:var(--primary);width:16px;height:16px;flex-shrink:0;}
+  .consult-agree input{appearance:none;-webkit-appearance:none;accent-color:var(--primary);width:16px;height:16px;flex-shrink:0;border:1.5px solid #fff;border-radius:4px;background:#fff;cursor:pointer;position:relative;}
+  .consult-agree input:checked{background:var(--primary);border-color:transparent;}
+  .consult-agree input:checked::after{content:"";position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='4,13 9,18 20,6'/%3E%3C/svg%3E");background-size:95%;background-position:center;background-repeat:no-repeat;}
   .consult-agree .more{text-decoration:underline;white-space:nowrap;flex-shrink:0;}
 
   .consult-submit{order:3;}
 
   .reservation .consult-agree{color:var(--ink);}
+  .reservation .consult-agree input{border-color:#ccc;}
+  .reservation .consult-agree input:checked{border-color:transparent;}
 
   /* ---------- Target (recommended-for) ---------- */
   .target{
@@ -316,18 +327,51 @@
   .doctor-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:24px;}
   .doctor-card{
     position:relative;border-radius:15px;overflow:hidden;aspect-ratio:242/380;
-    background:var(--device-light);
+    background:var(--device-light);cursor:pointer;
   }
-  .doctor-card img{width:100%;height:109%;object-fit:cover;}
+  .doctor-card .photo{
+    position:absolute;inset:0;width:100%;height:109%;object-fit:cover;
+    transition:opacity .5s ease;
+  }
+  .doctor-card .photo-hover{opacity:0;}
+  .doctor-card:hover .photo-default,
+  .doctor-card.active .photo-default{opacity:0;}
+  .doctor-card:hover .photo-hover,
+  .doctor-card.active .photo-hover{opacity:1;}
   .doctor-card::after{
-    content:"";position:absolute;inset:0;
+    content:"";position:absolute;inset:0;z-index:1;
     background:linear-gradient(180deg,rgba(0,0,0,0) 55%,rgba(0,0,0,0.4) 100%);
+    transition:opacity .4s ease;
+  }
+  .doctor-card::before{
+    content:"";position:absolute;inset:0;z-index:1;
+    background:rgba(0,23,65,0.5);opacity:0;transition:opacity .4s ease;
+  }
+  .doctor-card:hover::before,
+  .doctor-card.active::before{opacity:1;}
+  .doctor-card:hover::after,
+  .doctor-card.active::after{opacity:0;}
+  .doctor-card .content{
+    position:absolute;left:20px;right:20px;top:14px;bottom:14px;z-index:2;
+    display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;
   }
   .doctor-card .info{
-    position:absolute;left:0;right:0;bottom:14px;text-align:center;color:#fff;z-index:1;
+    text-align:center;color:#fff;flex-shrink:0;
   }
   .doctor-card .info .name{font-size:16px;font-weight:700;letter-spacing:2px;}
-  .doctor-card .info .role{font-size:12px;letter-spacing:3px;opacity:.9;margin-top:4px;}
+  .doctor-card .info .role{font-size:12px;letter-spacing:3px;opacity:.9;margin-top:2px;margin-bottom:4px;}
+  .doctor-card .bio{
+    height:0;opacity:0;margin-top:0;overflow-y:auto;flex-shrink:0;
+    text-align:left;color:#fff;font-size:13px;line-height:1.55;font-weight: 300;
+    transition:height .5s cubic-bezier(.4,0,.2,1), opacity .4s ease .1s, margin-top .5s cubic-bezier(.4,0,.2,1);
+  }
+  .doctor-card:hover .bio,
+  .doctor-card.active .bio{
+    height:80%;opacity:1;margin-top:10px;
+  }
+  .doctor-card .bio p{margin:0 0 2px;}
+  .doctor-card .bio::-webkit-scrollbar{width:3px;}
+  .doctor-card .bio::-webkit-scrollbar-thumb{background:rgba(255,255,255,.4);border-radius:2px;}
 
   /* ---------- Benefit steps ---------- */
   .benefit{
@@ -368,11 +412,13 @@
   .footer-wave{width:100%;display:block;margin-bottom:-2px;}
   .site-footer strong{color:#fff;}
   .site-footer .disclaimer{margin-top:10px;opacity:.7;}
+  .footer-logo{height:18px;width:auto;display:block;margin:0 auto 14px;}
 
   /* ============================================================
      DESKTOP (>= 900px) — mirrors the PC frame proportions
      ============================================================ */
   @media (min-width:900px){
+    .mobile-only-break{display:none;}
     .wrap{padding:0 40px;}
 
     .site-header{padding:13px 60px;}
@@ -395,7 +441,7 @@
     }
 
     .consult{
-      max-width:1100px;margin:-80px auto 0;border-radius:24px;padding:30px 56px;
+      max-width:1100px;margin:-120px auto 0;border-radius:24px;padding:30px 56px;
       position:relative;z-index:2;
     }
     .consult-inner{display:flex;justify-content:space-between;align-items:center;gap:40px;}
@@ -487,7 +533,7 @@
 
 <div class="gradient-zone">
   <!-- HERO -->
-  <section class="hero">
+  <section class="hero" data-header-theme="dark">
     <!-- Text kept for SEO/accessibility only; visually the image below already contains this content -->
     <div class="sr-only">
       <div class="brand-hana-badge">
@@ -507,7 +553,7 @@
   </section>
 
   <!-- CONSULT CARD -->
-  <section class="consult" id="consult">
+  <section class="consult" id="consult" data-header-theme="dark">
     <div class="consult-inner">
       <div class="head">
         <p class="title">지금 바로<br /><span class="hl">상담 신청</span> 하세요!</p>
@@ -528,7 +574,7 @@
           </div>
           <label class="consult-agree">
             <input type="checkbox" required />
-            <span>개인정보 수집 및 이용에 관한 내용을 확인하고 동의함</span>
+            <span>(필수) 개인정보 수집 및 이용 동의서</span>
             <a href="#privacy" class="more">자세히보기</a>
           </label>
           <button type="submit" class="btn-block consult-submit">무료로 상담받기</button>
@@ -565,7 +611,7 @@
 </div>
 
   <!-- TARGET / 추천대상 -->
-  <section class="target" id="target">
+  <section class="target" id="target" data-header-theme="dark">
     <div class="bgimg" style="background-image:url('https://www.figma.com/api/mcp/asset/f7733975-b938-4ac4-8fb1-ba9d9922946f');"></div>
     <div class="inner">
       <p class="eyebrow cyan">추천대상</p>
@@ -605,7 +651,7 @@
         </div>
         <div class="lasik-video">
           <iframe
-            src="https://www.youtube.com/embed/AMPDMAUuL5E"
+            src="https://www.youtube.com/embed/wfV8w93j1TA"
             title="스마일라식 소개 영상"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowfullscreen
@@ -651,31 +697,77 @@
 
       <div class="doctor-grid">
         <div class="doctor-card">
-          <img src="https://www.figma.com/api/mcp/asset/30428533-9784-4eb0-897a-f91f685d7ce8" alt="염동주 대표원장" />
-          <div class="info"><div class="name">염동주</div><div class="role">대표원장</div></div>
+          <img class="photo photo-default" src="https://www.figma.com/api/mcp/asset/30428533-9784-4eb0-897a-f91f685d7ce8" alt="염동주 대표원장" />
+          <img class="photo photo-hover" src="assets/doctors/yeom-hover.jpg" alt="" />
+          <div class="content">
+            <div class="info"><div class="name">염동주</div><div class="role">대표원장</div></div>
+            <div class="bio">
+            <p>안과전문의 / 의학박사</p>
+            <p>인제대학교 의과대학 졸업</p>
+            <p>서울백병원 안과 전공의</p>
+            <p>연천의료원 안과 과장</p>
+            <p>대한안과학회 정회원</p>
+            <p>대한검안학회 정회원</p>
+            <p>한국외안부학회 정회원</p>
+            <p>한국콘택트렌즈학회 정회원</p>
+            <p>대한미용성형레이저의학회 정회원</p>
+            <p>한국백내장굴절수술학회 정회원</p>
+            <p>유럽백내장굴절수술학회 정회원</p>
+          </div>
+          </div>
         </div>
         <div class="doctor-card">
-          <img src="https://www.figma.com/api/mcp/asset/e08b8b20-3681-4036-b8dd-c662725e33c3" alt="윤효성 대표원장" />
-          <div class="info"><div class="name">윤효성</div><div class="role">대표원장</div></div>
+          <img class="photo photo-default" src="https://www.figma.com/api/mcp/asset/e08b8b20-3681-4036-b8dd-c662725e33c3" alt="윤효성 대표원장" />
+          <img class="photo photo-hover" src="assets/doctors/yoon-hover.jpg" alt="" />
+          <div class="content">
+            <div class="info"><div class="name">윤효성</div><div class="role">대표원장</div></div>
+            <div class="bio">
+            <p>안과전문의 / 의학석사</p>
+            <p>한림대학교 의과대학 졸업</p>
+            <p>평촌성심병원 안과 전공의</p>
+            <p>(전)GS안과</p>
+            <p>(전)CK안과</p>
+            <p>(전)아이러브안과</p>
+            <p>(전)수원이안과</p>
+            <p>대한안과학회 정회원</p>
+            <p>한국외안부학회 정회원</p>
+            <p>한국콘택트렌즈학회 정회원</p>
+            <p>한국백내장굴절수술학회 정회원</p>
+          </div>
+          </div>
         </div>
         <div class="doctor-card">
-          <img src="https://www.figma.com/api/mcp/asset/3052da70-4bab-4f7f-9c18-72c683c2db79" alt="정상준 대표원장" />
-          <div class="info"><div class="name">정상준</div><div class="role">대표원장</div></div>
+          <img class="photo photo-default" src="https://www.figma.com/api/mcp/asset/3052da70-4bab-4f7f-9c18-72c683c2db79" alt="정상준 대표원장" />
+          <img class="photo photo-hover" src="assets/doctors/jeong-hover.jpg" alt="" />
+          <div class="content">
+            <div class="info"><div class="name">정상준</div><div class="role">대표원장</div></div>
+            <div class="bio">
+            <p>안과전문의 / 의학박사</p>
+            <p>약력을 입력해주세요</p>
+          </div>
+          </div>
         </div>
         <div class="doctor-card">
-          <img src="https://www.figma.com/api/mcp/asset/6df26be5-a3a9-4b8d-b3f7-cb1ca804d500" alt="양형모 대표원장" />
-          <div class="info"><div class="name">양형모</div><div class="role">대표원장</div></div>
+          <img class="photo photo-default" src="https://www.figma.com/api/mcp/asset/6df26be5-a3a9-4b8d-b3f7-cb1ca804d500" alt="양형모 대표원장" />
+          <img class="photo photo-hover" src="assets/doctors/yang-hover.jpg" alt="" />
+          <div class="content">
+            <div class="info"><div class="name">양형모</div><div class="role">대표원장</div></div>
+            <div class="bio">
+            <p>안과전문의 / 의학박사</p>
+            <p>약력을 입력해주세요</p>
+          </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- 예약링크 특별혜택 -->
-  <section class="benefit" id="benefit">
+  <section class="benefit" id="benefit" data-header-theme="dark">
     <div class="bgimg" style="background-image:url('assets/benefit-bg.jpg');"></div>
     <div class="inner">
       <p class="eyebrow">예약링크 특별혜택</p>
-      <h2 class="heading">하나카드 회원들을 위한 특별한 혜택</h2>
+      <h2 class="heading">하나카드회원들을 위한<br class="mobile-only-break" />특별한혜택</h2>
 
       <div class="steps">
         <div class="step">
@@ -713,7 +805,7 @@
         </div>
 
         <div class="reservation-card">
-          <p class="title" style="font-size:22px;font-weight:700;">지금 바로<br /><span style="color:var(--primary);">상담 신청</span> 하세요!</p>
+          <p class="title" style="font-size:22px;font-weight:700;margin-bottom: 8px">지금 바로<br /><span style="color:var(--primary);">상담 신청</span> 하세요!</p>
           <p class="sub">무료 상담으로 궁금증을 해결하세요</p>
 
           <form onsubmit="return handleConsultSubmit(event)">
@@ -743,12 +835,27 @@
 
 </main>
 
-<footer class="site-footer">
+<footer class="site-footer" data-header-theme="dark">
+  <img class="footer-logo" src="assets/logo-white.svg" alt="강남스마일안과" />
   <p><strong>강남스마일안과</strong> · 염동주 · 윤효성 · 정상준 · 양형모 대표원장</p>
   <p class="disclaimer">시술의 효과 및 만족도는 개인의 신체 조건에 따라 차이가 있을 수 있습니다.<br />ⓒ 2026 강남스마일안과. All rights reserved.</p>
 </footer>
 
 <script>
+  document.querySelectorAll('.doctor-card').forEach(function(card){
+    card.addEventListener('click', function(e){
+      e.stopPropagation();
+      var isActive = card.classList.contains('active');
+      document.querySelectorAll('.doctor-card.active').forEach(function(c){ c.classList.remove('active'); });
+      if(!isActive){ card.classList.add('active'); }
+    });
+  });
+  document.addEventListener('click', function(e){
+    if(!e.target.closest('.doctor-card')){
+      document.querySelectorAll('.doctor-card.active').forEach(function(c){ c.classList.remove('active'); });
+    }
+  });
+
   function handleConsultSubmit(e){
     e.preventDefault();
     const form = e.target;
@@ -766,20 +873,48 @@
     track.addEventListener('touchend', ()=> track.style.animationPlayState='running');
   }
 
-  // GNB: white at top, blurred once the page is scrolled
+  // GNB: opacity increases on scroll (20% -> 60%); logo swaps to white
+  // whenever the header is currently overlapping a dark-background section.
   (function(){
     const header = document.querySelector('.site-header');
-    if(!header) return;
+    const logo = header ? header.querySelector('.brand-logo') : null;
+    if(!header || !logo) return;
+
     const SCROLL_THRESHOLD = 10;
+    const LOGO_LIGHT = 'assets/logo.svg';
+    const LOGO_WHITE = 'assets/logo-white.svg';
+    const darkSections = Array.from(document.querySelectorAll('[data-header-theme="dark"]'));
+
+    let ticking = false;
+
     function updateHeader(){
-      if(window.scrollY > SCROLL_THRESHOLD){
-        header.classList.add('is-scrolled');
-      } else {
-        header.classList.remove('is-scrolled');
+      ticking = false;
+      const headerHeight = header.offsetHeight;
+
+      // 1) scroll-based opacity
+      header.classList.toggle('is-scrolled', window.scrollY > SCROLL_THRESHOLD);
+
+      // 2) background-darkness-based logo color
+      const onDark = darkSections.some(sec => {
+        const r = sec.getBoundingClientRect();
+        return r.top < headerHeight && r.bottom > 0;
+      });
+      if(header.classList.contains('on-dark') !== onDark){
+        header.classList.toggle('on-dark', onDark);
+        logo.src = onDark ? LOGO_WHITE : LOGO_LIGHT;
       }
     }
+
+    function onScroll(){
+      if(!ticking){
+        window.requestAnimationFrame(updateHeader);
+        ticking = true;
+      }
+    }
+
     updateHeader();
-    window.addEventListener('scroll', updateHeader, { passive:true });
+    window.addEventListener('scroll', onScroll, { passive:true });
+    window.addEventListener('resize', updateHeader);
   })();
 </script>
 

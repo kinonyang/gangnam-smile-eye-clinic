@@ -125,13 +125,13 @@
   }
   .eyebrow.cyan{color:var(--cyan);}
   h2.heading{
-    font-size:26px;font-weight:700;line-height:1.3;margin:0 0 14px;color:var(--ink);
+    font-size:22px;font-weight:700;line-height:1.3;margin:0 0 14px;color:var(--ink);
   }
   h2.heading.on-dark{color:#fff;}
 
   /* ---------- Gradient zone (hero + consult + diff share one backdrop) ---------- */
   .gradient-zone{
-    background:linear-gradient(180deg,#fff 0%, rgba(54,81,255,0.06) 55%, rgba(54,81,255,0.06) 100%);
+    background:linear-gradient(180deg,#fff 0%, rgba(54,81,255,0.04) 55%, rgba(54,81,255,0.06) 100%);
   }
 
   /* ---------- HERO ---------- */
@@ -193,7 +193,7 @@
     position:relative;
     z-index:2;
     /* hero-image is 100vw wide at 3:4 ratio -> height = 133.33vw; cover 40% of it so 60% stays visible */
-    margin-top:-46vw;
+    margin-top:-52vw;
   }
   .consult .head p.small{font-size:13px;font-weight:300;color:#fff;opacity:.85;margin:8px 0 0;}
   .consult .title{font-size:22px;font-weight:700;line-height:1.3;margin:0;}
@@ -275,14 +275,14 @@
   .diff{padding:80px 20px;}
   .diff .inner{max-width:1004px;margin:0 auto;}
   .diff-grid{display:flex;flex-direction:column;gap:32px;margin-top:20px;}
-  .diff-img{border-radius:16px;overflow:hidden;aspect-ratio:326/195;}
+  .diff-img{border-radius:16px;overflow:hidden;aspect-ratio:326/240;}
   .diff-img img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease;display:block;}
   .diff-card:hover .diff-img img{transform:scale(1.08);}
   .diff-card h3{font-size:18px;font-weight:700;margin:16px 0 8px;line-height:1.3;}
   .diff-card p{font-size:14px;color:var(--gray);line-height:1.5;margin:0;}
 
   /* ---------- Smile Lasik banner ---------- */
-  .lasik{padding:160px 20px 80px 20px;}
+  .lasik{padding:80px 20px 80px 20px;}
   .lasik .inner{max-width:1004px;margin:0 auto;}
   .lasik-video{
     margin-top:24px;border-radius:20px;overflow:hidden;position:relative;
@@ -293,7 +293,7 @@
 
   /* ---------- Devices marquee ---------- */
   .devices{padding:60px 0;background:#fff;overflow:hidden;}
-  .devices .inner{max-width:1004px;margin:0 auto;padding:0;}
+  .devices .inner{max-width:1004px;margin:0 auto;}
   .device-scroll{margin-top:24px;overflow:hidden;position:relative;width:100%;}
   .device-scroll::before,.device-scroll::after{
     content:"";position:absolute;top:0;bottom:0;width:40px;z-index:2;pointer-events:none;
@@ -376,22 +376,27 @@
 
   /* ---------- Benefit steps ---------- */
   .benefit{
-    position:relative;padding:60px 20px;color:#fff;overflow:hidden;
-    background:var(--bg-navy);
+    position:relative;padding:80px 20px 80px;color:var(--ink);overflow:hidden;
+    background:#fff;
   }
-  .benefit .bgimg{position:absolute;inset:0;background-size:cover;background-position:center;opacity:.55;}
-  .benefit .bgimg::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,0.5);}
-  .benefit .inner{position:relative;z-index:1;max-width:1004px;margin:0 auto;text-align:center;}
-  .benefit .eyebrow{color:var(--cyan);justify-content:center;}
-  .benefit h2{color:#fff;}
-  .steps{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:32px;}
-  .step-num{
-    width:32px;height:32px;border-radius:20px;background:var(--primary);
-    display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;
-    margin:0 auto 12px;
+  .benefit .inner{position:relative;z-index:1;max-width:1080px;margin:0 auto;text-align:left;}
+  .benefit .eyebrow{color:var(--primary);justify-content:flex-start;}
+  .benefit h2{color:var(--ink);}
+  .steps{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:24px;}
+  .step{
+    position:relative;
+    background:var(--bg-soft);
+    border-radius:16px;
+    padding:20px 18px 56px;
+    text-align:left;
+    min-height:120px;
   }
-  .step h4{font-size:14px;margin:0 0 6px;line-height:1.3;}
-  .step p{font-size:12px;opacity:.8;margin:0;}
+  .step h4{font-size:15px;margin:0 0 6px;line-height:1.3;font-weight:700;}
+  .step p{font-size:11px;color:var(--gray);opacity:1;margin:0;}
+  .step-icon{
+    position:absolute;right:16px;bottom:14px;
+    width:45px;height:45px;object-fit:contain;
+  }
 
   /* ---------- Reservation (final) ---------- */
   .reservation{background:var(--bg-soft);padding:60px 20px;}
@@ -442,7 +447,7 @@
     }
 
     .consult{
-      max-width:1100px;margin:-120px auto 0;border-radius:24px;padding:30px 56px;
+      max-width:1100px;margin:-120px auto -126px;border-radius:24px;padding:30px 56px;
       position:relative;z-index:2;
     }
     .consult-inner{display:flex;justify-content:space-between;align-items:center;gap:40px;}
@@ -471,9 +476,9 @@
     .target-item p{font-size:15px;}
     .target-item .icon{width:56px;height:56px;}
     .target-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:40px;}
-    h2.heading{font-size:34px;}
+    h2.heading{font-size:30px;}
 
-    .diff-grid{flex-direction:row;gap:24px;}
+    .diff-grid{flex-direction:row;gap:16px;}
     .diff-card{flex:1;}
     .diff-card h3{font-size:22px;}
     .diff-card p{font-size:15px;}
@@ -490,11 +495,13 @@
     .doctor-grid{grid-template-columns:repeat(4,1fr);gap:12px;}
     .doctor-card .info .name{font-size:20px;}
 
-    .benefit{padding:100px 40px;}
-    .steps{grid-template-columns:repeat(4,1fr);gap:32px;}
-    .step-num{width:40px;height:40px;font-size:18px;}
-    .step h4{font-size:18px;}
-    .step p{font-size:15px;}
+    .benefit{padding:240px 40px 120px;}
+    .benefit .inner{max-width:1004px;}
+    .steps{grid-template-columns:repeat(4,1fr);gap:16px;}
+    .step{padding:28px 24px 76px;min-height:180px;border-radius:20px;}
+    .step h4{font-size:19px;}
+    .step p{font-size:14px;}
+    .step-icon{width:60px;height:60px;right:22px;bottom:22px;}
 
     .reservation{padding:100px 40px;}
     .reservation .inner{max-width:1004px;}
@@ -581,6 +588,37 @@
           <button type="submit" class="btn-block consult-submit">무료로 상담받기</button>
         </div>
       </form>
+    </div>
+  </section>
+
+  <!-- 예약링크 특별혜택 -->
+  <section class="benefit" id="benefit">
+    <div class="inner">
+      <p class="eyebrow">예약링크 특별혜택</p>
+      <h2 class="heading">예약링크 고객님들을 위한<br />특별한 4가지 혜택 제공!</h2>
+
+      <div class="steps">
+        <div class="step">
+          <h4>70여가지<br />정밀검사 지원</h4>
+          <p>약 1~2시간 소요</p>
+          <img class="step-icon" src="assets/icons/benefit-exam.svg" alt="" aria-hidden="true" />
+        </div>
+        <div class="step">
+          <h4>우대가<br />최대 적용</h4>
+          <p>본 이벤트에 한함</p>
+          <img class="step-icon" src="assets/icons/benefit-price.svg" alt="" aria-hidden="true" />
+        </div>
+        <div class="step">
+          <h4>당일수술<br />추가할인</h4>
+          <p>당일검사부터 수술까지</p>
+          <img class="step-icon" src="assets/icons/benefit-schedule.svg" alt="" aria-hidden="true" />
+        </div>
+        <div class="step">
+          <h4>ATOS<br />정품인증 카드</h4>
+          <p>뉴스마일라식</p>
+          <img class="step-icon" src="assets/icons/benefit-atos.svg" alt="" aria-hidden="true" />
+        </div>
+      </div>
     </div>
   </section>
 
@@ -770,38 +808,6 @@
             <p>(전)싱글벙글안과 원장</p>
           </div>
           </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 예약링크 특별혜택 -->
-  <section class="benefit" id="benefit" data-header-theme="dark">
-    <div class="bgimg" style="background-image:url('assets/benefit-bg.jpg');"></div>
-    <div class="inner">
-      <p class="eyebrow">예약링크 특별혜택</p>
-      <h2 class="heading">예약링크 고객님들을 위한 <br class="mobile-only-break" />특별한 혜택</h2>
-
-      <div class="steps">
-        <div class="step">
-          <div class="step-num">1</div>
-          <h4>70여가지<br />정밀검사 지원</h4>
-          <p>*약 1~2시간 소요</p>
-        </div>
-        <div class="step">
-          <div class="step-num">2</div>
-          <h4>우대가<br />최대 적용</h4>
-          <p>*본 이벤트에 한함</p>
-        </div>
-        <div class="step">
-          <div class="step-num">3</div>
-          <h4>당일수술<br />추가할인</h4>
-          <p>*당일검사부터 수술까지</p>
-        </div>
-        <div class="step">
-          <div class="step-num">4</div>
-          <h4>ATOS<br />정품인증 카드</h4>
-          <p>*뉴스마일라식</p>
         </div>
       </div>
     </div>

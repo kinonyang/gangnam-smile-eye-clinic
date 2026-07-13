@@ -335,7 +335,12 @@
     margin-top:24px;border-radius:20px;overflow:hidden;position:relative;
     aspect-ratio:375/210;background:#000;
   }
-  .lasik-video iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block;}
+  .lasik-video iframe{
+    position:absolute;top:50%;left:50%;
+    width:102%;height:102%;
+    transform:translate(-50%,-50%);
+    border:0;display:block;
+  }
   .lasik p.sub{font-size:14px;color:var(--ink);line-height:1.5;margin:0;}
 
   /* ---------- Devices marquee ---------- */

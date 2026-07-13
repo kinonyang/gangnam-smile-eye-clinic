@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head >
-  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon/favicon.svg" />
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>강남스마일안과 | 한번의 선택, 평생의 선명함</title>
@@ -99,6 +99,49 @@
   }
   .btn-block:hover{background:var(--primary-deep);}
 
+  /* ---------- Top(scroll-to-top) button ---------- */
+  .btn-top{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    width:48px;
+    height:48px;
+    border-radius:50%;
+    background:var(--white);
+    border:1px solid var(--line);
+    box-shadow:0 4px 12px rgba(0,0,0,0.12);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    z-index:90;
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(10px);
+    transition:opacity .25s ease, transform .25s ease, background .2s ease, border-color .2s ease;
+  }
+  .btn-top svg{
+    width:18px;
+    height:18px;
+    stroke:var(--primary);
+    transition:stroke .2s ease;
+  }
+  .btn-top.is-visible{
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0);
+  }
+  .btn-top:hover{
+    background:var(--primary);
+    border-color:var(--primary);
+  }
+  .btn-top:hover svg{
+    stroke:#fff;
+  }
+  @media (min-width:900px){
+    .btn-top{right:32px;bottom:32px;width:52px;height:52px;}
+  }
+
   /* ---------- Header ---------- */
   .site-header{
     position:fixed;top:0;left:0;right:0;z-index:100;
@@ -121,7 +164,7 @@
 
   /* ---------- Eyebrow / heading helpers ---------- */
   .eyebrow{
-    font-size:14px;font-weight:600;color:var(--primary);margin:0 0 12px;letter-spacing:.2px;
+    font-size:16px;font-weight:600;color:var(--primary);margin:0 0 12px;letter-spacing:.2px;
   }
   .eyebrow.cyan{color:var(--cyan);}
   h2.heading{
@@ -166,7 +209,7 @@
   .accent .ch::before{
     content:"";
     position:absolute;
-    top: -500px;px;
+    top: -500px;
     left:50%;
     transform:translateX(-50%);
     width:4px;height:4px;border-radius:50%;
@@ -267,19 +310,23 @@
     background:#111;border-radius:11px;width:50px;height:50px;flex-shrink:0;
     display:flex;align-items:center;justify-content:center;overflow:hidden;
   }
-  .target-item .icon img{width:100%;height:100%;object-fit:contain;}
+  .target-item .icon img{width:70%;height:100%;object-fit:contain;}
   .target-item h3{font-size:16px;margin:0 0 4px;color:var(--ink);}
   .target-item p{font-size:13px;margin:0;color:var(--ink);opacity:.8;}
 
   /* ---------- Differentiators ---------- */
   .diff{padding:80px 20px;}
   .diff .inner{max-width:1004px;margin:0 auto;}
-  .diff-grid{display:flex;flex-direction:column;gap:32px;margin-top:20px;}
-  .diff-img{border-radius:16px;overflow:hidden;aspect-ratio:326/240;}
-  .diff-img img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease;display:block;}
+  .diff-grid{display:flex;flex-direction:column;gap:40px;margin-top:20px;}
+  /* 모바일 비율: 필요한 값으로 여기서 조절 */
+  .diff-img{border-radius:16px;overflow:hidden;aspect-ratio:326/200;}
+  .diff-img img,.diff-img picture{width:100%;height:100%;display:block;}
+  .diff-img img{object-fit:cover;transition:transform .4s ease;}
   .diff-card:hover .diff-img img{transform:scale(1.08);}
   .diff-card h3{font-size:18px;font-weight:700;margin:16px 0 8px;line-height:1.3;}
   .diff-card p{font-size:14px;color:var(--gray);line-height:1.5;margin:0;}
+  .diff-card .desktop-text{display:none;}
+  .diff-card .mobile-text{display:inline;}
 
   /* ---------- Smile Lasik banner ---------- */
   .lasik{padding:80px 20px 80px 20px;}
@@ -302,7 +349,7 @@
   .device-scroll::after{right:0;background:linear-gradient(270deg,#fff,rgba(255,255,255,0));}
   .device-track{
     display:flex;gap:12px;width:max-content;
-    animation:scrollDevices 28s linear infinite;
+    animation:scrollDevices 80s linear infinite;
   }
   .device-scroll:hover .device-track{animation-play-state:paused;}
   @keyframes scrollDevices{
@@ -310,7 +357,7 @@
     to{transform:translateX(-50%);}
   }
   .device-card{
-    position:relative;width:170px;height:170px;border-radius:15px;overflow:hidden;
+    position:relative;width:200px;height:240px;border-radius:12px;overflow:hidden;
     flex-shrink:0;background:var(--device-light);
   }
   .device-card img{width:100%;height:100%;object-fit:cover;}
@@ -480,8 +527,12 @@
 
     .diff-grid{flex-direction:row;gap:16px;}
     .diff-card{flex:1;}
+    /* PC 비율: 필요한 값으로 여기서 조절 (모바일과 독립적) */
+    .diff-img{aspect-ratio:326/240;}
     .diff-card h3{font-size:22px;}
     .diff-card p{font-size:15px;}
+    .diff-card .mobile-text{display:none;}
+    .diff-card .desktop-text{display:inline;}
 
     .lasik-inner-flex{display:flex;align-items:center;gap:40px;}
     .lasik-text{flex:1;}
@@ -631,19 +682,52 @@
 
       <div class="diff-grid">
         <div class="diff-card">
-          <div class="diff-img"><img src="https://www.figma.com/api/mcp/asset/6adeb047-82fb-44e0-81e6-22f686983d9e" alt="풍부한 임상경험" /></div>
-          <h3>풍부한 임상경험,<br />5년 연속 최다 수술 기록</h3>
-          <p>최신장비 5세대 ATOS를 활용한<br />스마일수술 최다 기록 보유</p>
+          <div class="diff-img">
+            <picture>
+              <source media="(min-width:900px)" srcset="assets/diff/diff-experience-pc.jpg" />
+              <img src="assets/diff/diff-experience.jpg" alt="풍부한 임상경험" />
+            </picture>
+          </div>
+          <h3>
+            <span class="mobile-text">풍부한 임상경험, 5년 연속 최다 수술 기록</span>
+            <span class="desktop-text">풍부한 임상경험,<br />5년 연속 최다 수술 기록</span>
+          </h3>
+          <p>
+            <span class="mobile-text">최신장비 5세대 ATOS를 활용한<br />스마일수술 최다 기록 보유</span>
+            <span class="desktop-text">최신장비 5세대 ATOS를 활용한<br />스마일수술 최다 기록 보유</span>
+          </p>
         </div>
         <div class="diff-card">
-          <div class="diff-img"><img src="https://www.figma.com/api/mcp/asset/6846af9d-e774-4126-a8da-3956e260fe79" alt="목표시력 달성" /></div>
-          <h3>스마일수술<br />목표시력 99% 달성</h3>
-          <p>ESCRS,KSCRS,KOS<br />논문을 통해 목표 근시교정98%,<br />난시교정 99% 달성 발표</p>
+          <div class="diff-img">
+            <picture>
+              <source media="(min-width:900px)" srcset="assets/diff/diff-results-pc.jpg" />
+              <img src="assets/diff/diff-results.jpg" alt="목표시력 달성" />
+            </picture>
+          </div>
+          <h3>
+            <span class="mobile-text">스마일수술 목표시력 99% 달성</span>
+            <span class="desktop-text">스마일수술<br />목표시력 99% 달성</span>
+          </h3>
+          <p>
+            <span class="mobile-text">ESCRS,KSCRS,KOS 논문을 통해<br />목표 근시교정98%, 난시교정 99% 달성 발표</span>
+            <span class="desktop-text">ESCRS,KSCRS,KOS<br />논문을 통해 목표 근시교정98%,<br />난시교정 99% 달성 발표</span>
+          </p>
         </div>
         <div class="diff-card">
-          <div class="diff-img"><img src="https://www.figma.com/api/mcp/asset/6c3b9e0d-f8db-4bf3-ac10-3917e650bb53" alt="OPEN 수술실" /></div>
-          <h3>신뢰를 더한<br />OPEN 수술실</h3>
-          <p>투명함을 지향하는 안과,<br />개방형 수술실<br />모든 과정을 직접 확인할 수 있습니다.</p>
+          <div class="diff-img">
+            <picture>
+              <source media="(min-width:900px)" srcset="assets/diff/diff-surgery-room-pc.jpg" />
+              <img src="assets/diff/diff-surgery-room.jpg" alt="OPEN 수술실" />
+            </picture>
+          </div>
+          <h3>
+            <span class="mobile-text">신뢰를 더한 OPEN 수술실</span>
+            <span class="desktop-text">신뢰를 더한<br />OPEN 수술실</span>
+          </h3>
+          <p>
+            <span class="mobile-text">투명함을 지향하는 안과, 개방형 수술실 모든 과정을 직접<br />확인할 수 있습니다.</span>
+            <span class="desktop-text">투명함을 지향하는 안과, 개방형 수술실<br />모든 과정을 직접 확인할 수 있습니다.</span>
+          </p>
         </div>
       </div>
     </div>
@@ -660,19 +744,19 @@
       <div class="target-card">
         <div class="target-grid-2">
           <div class="target-item">
-            <div class="icon"><img src="https://www.figma.com/api/mcp/asset/fcf676f5-4243-4554-98c0-19f47374775c" alt="" /></div>
+            <div class="icon"><img src="assets/icons/icon-glasses.svg" alt="" /></div>
             <div><h3>안경 및 렌즈</h3><p>안경 및 렌즈가 불편하신 분</p></div>
           </div>
           <div class="target-item">
-            <div class="icon"><img src="https://www.figma.com/api/mcp/asset/54425ebd-794b-4189-8d81-4e0711f48694" alt="" /></div>
+            <div class="icon"><img src="assets/icons/icon-dry-eye.svg" alt="" /></div>
             <div><h3>안구건조증</h3><p>렌즈로 인해 건조하고 불편하신 분</p></div>
           </div>
           <div class="target-item">
-            <div class="icon"><img src="https://www.figma.com/api/mcp/asset/5dbcde8a-9a1a-4a09-bb7e-3dcdb5cb0fc6" alt="" /></div>
+            <div class="icon"><img src="assets/icons/icon-activity.svg" alt="" /></div>
             <div><h3>운동 및 활동</h3><p>운동, 활동 시 안경이나 렌즈가 불편하신 분</p></div>
           </div>
           <div class="target-item">
-            <div class="icon"><img src="https://www.figma.com/api/mcp/asset/ed27f5a9-42b8-442c-88f9-b3b14cedf859" alt="" /></div>
+            <div class="icon"><img src="assets/icons/icon-recovery.svg" alt="" /></div>
             <div><h3>일상 복귀</h3><p>빠른 시일내로 일상복귀가 걱정되시는 분</p></div>
           </div>
         </div>
@@ -710,21 +794,49 @@
     </div>
     <div class="device-scroll">
       <div class="device-track" id="deviceTrack">
-        <div class="device-card"><img src="https://www.figma.com/api/mcp/asset/a421d9e3-8c56-4ee5-bd73-b6e2bea64307" alt="ARK-510a" /><span>ARK-510a</span></div>
-        <div class="device-card"><img src="https://www.figma.com/api/mcp/asset/ecc7c87b-9a68-47c7-a034-14f4595623a3" alt="AMARIS RED 1050RS" /><span>AMARIS RED 1050RS</span></div>
-        <div class="device-card"><img src="https://www.figma.com/api/mcp/asset/611f7fe9-e01c-479c-b0ea-894578ac6a38" alt="Amaris 750s" /><span>Amaris 750s</span></div>
-        <div class="device-card"><img src="https://www.figma.com/api/mcp/asset/86011ef0-07f9-4c25-9e43-b6f60e634190" alt="SCHWIND ATOS" /><span>SCHWIND ATOS</span></div>
-        <div class="device-card"><img src="https://www.figma.com/api/mcp/asset/10059df1-f8cc-4e1b-9046-297dbce5444e" alt="SCOUT" /><span>SCOUT</span></div>
-        <div class="device-card"><img src="https://www.figma.com/api/mcp/asset/bc2d2dff-3927-4983-b1ac-4e4faff693c1" alt="Leica f19" /><span>Leica f19</span></div>
-        <div class="device-card"><img src="https://www.figma.com/api/mcp/asset/2880e446-9c3d-413d-95ca-e5cdca2b2410" alt="Centurion" /><span>Centurion</span></div>
+        <div class="device-card"><img src="assets/device/device-ark-510a.jpg" alt="ARK-510a" /><span>ARK-510a</span></div>
+        <div class="device-card"><img src="assets/device/device-amaris-red-1050rs.jpg" alt="AMARIS RED 1050RS" /><span>AMARIS RED 1050RS</span></div>
+        <div class="device-card"><img src="assets/device/device-amaris-750s.jpg" alt="Amaris 750s" /><span>Amaris 750s</span></div>
+        <div class="device-card"><img src="assets/device/device-schwind-atos.jpg" alt="SCHWIND ATOS" /><span>SCHWIND ATOS</span></div>
+        <div class="device-card"><img src="assets/device/device-scout.jpg" alt="SCOUT" /><span>SCOUT</span></div>
+        <div class="device-card"><img src="assets/device/device-leica-f19.jpg" alt="Leica f19" /><span>Leica f19</span></div>
+        <div class="device-card"><img src="assets/device/device-centurion.jpg" alt="Centurion" /><span>Centurion</span></div>
+        <div class="device-card"><img src="assets/device/device-3d-oct.jpg" alt="3d-OCT" /><span>3d-OCT</span></div>
+        <div class="device-card"><img src="assets/device/device-bq-900.jpg" alt="BQ 900" /><span>BQ 900</span></div>
+        <div class="device-card"><img src="assets/device/device-ct-800.jpg" alt="CT-800" /><span>CT-800</span></div>
+        <div class="device-card"><img src="assets/device/device-hs-7000.jpg" alt="HS-7000" /><span>HS-7000</span></div>
+        <div class="device-card"><img src="assets/device/device-rm-800.jpg" alt="Rm-800" /><span>Rm-800</span></div>
+        <div class="device-card"><img src="assets/device/device-ultra-q.jpg" alt="ULTRA Q" /><span>ULTRA Q</span></div>
+        <div class="device-card"><img src="assets/device/device-us-4000.jpg" alt="US-4000" /><span>US-4000</span></div>
+        <div class="device-card"><img src="assets/device/device-sp-1p.jpg" alt="SP-1p" /><span>SP-1p</span></div>
+        <div class="device-card"><img src="assets/device/device-dayrona-optos.jpg" alt="dayrona optos" /><span>dayrona optos</span></div>
+        <div class="device-card"><img src="assets/device/device-humphrey-field-analyzer3.jpg" alt="humphrey field analyzer3" /><span>humphrey field analyzer3</span></div>
+        <div class="device-card"><img src="assets/device/device-iol-master-700.jpg" alt="iol master 700" /><span>iol master 700</span></div>
+        <div class="device-card"><img src="assets/device/device-lensar.jpg" alt="lensar" /><span>lensar</span></div>
+        <div class="device-card"><img src="assets/device/device-lumera700.jpg" alt="lumera700" /><span>lumera700</span></div>
+        <div class="device-card"><img src="assets/device/device-pentacam-hr.jpg" alt="pentacam hr" /><span>pentacam hr</span></div>
         <!-- duplicate for seamless marquee loop -->
-        <div class="device-card" aria-hidden="true"><img src="https://www.figma.com/api/mcp/asset/a421d9e3-8c56-4ee5-bd73-b6e2bea64307" alt="" /><span>ARK-510a</span></div>
-        <div class="device-card" aria-hidden="true"><img src="https://www.figma.com/api/mcp/asset/ecc7c87b-9a68-47c7-a034-14f4595623a3" alt="" /><span>AMARIS RED 1050RS</span></div>
-        <div class="device-card" aria-hidden="true"><img src="https://www.figma.com/api/mcp/asset/611f7fe9-e01c-479c-b0ea-894578ac6a38" alt="" /><span>Amaris 750s</span></div>
-        <div class="device-card" aria-hidden="true"><img src="https://www.figma.com/api/mcp/asset/86011ef0-07f9-4c25-9e43-b6f60e634190" alt="" /><span>SCHWIND ATOS</span></div>
-        <div class="device-card" aria-hidden="true"><img src="https://www.figma.com/api/mcp/asset/10059df1-f8cc-4e1b-9046-297dbce5444e" alt="" /><span>SCOUT</span></div>
-        <div class="device-card" aria-hidden="true"><img src="https://www.figma.com/api/mcp/asset/bc2d2dff-3927-4983-b1ac-4e4faff693c1" alt="" /><span>Leica f19</span></div>
-        <div class="device-card" aria-hidden="true"><img src="https://www.figma.com/api/mcp/asset/2880e446-9c3d-413d-95ca-e5cdca2b2410" alt="" /><span>Centurion</span></div>
+        <div class="device-card" aria-hidden="true"><img src="assets/device/device-ark-510a.jpg" alt="" /><span>ARK-510a</span></div>
+        <div class="device-card" aria-hidden="true"><img src="assets/device/device-amaris-red-1050rs.jpg" alt="" /><span>AMARIS RED 1050RS</span></div>
+        <div class="device-card" aria-hidden="true"><img src="assets/device/device-amaris-750s.jpg" alt="" /><span>Amaris 750s</span></div>
+        <div class="device-card" aria-hidden="true"><img src="assets/device/device-schwind-atos.jpg" alt="" /><span>SCHWIND ATOS</span></div>
+        <div class="device-card" aria-hidden="true"><img src="assets/device/device-scout.jpg" alt="" /><span>SCOUT</span></div>
+        <div class="device-card" aria-hidden="true"><img src="assets/device/device-leica-f19.jpg" alt="" /><span>Leica f19</span></div>
+        <div class="device-card" aria-hidden="true"><img src="assets/device/device-centurion.jpg" alt="" /><span>Centurion</span></div>
+        <div class="device-card" aria-hidden="true"><img src="assets/device/device-3d-oct.jpg" alt="" /><span>3d-OCT</span></div>
+        <div class="device-card" aria-hidden="true"><img src="assets/device/device-bq-900.jpg" alt="" /><span>BQ 900</span></div>
+        <div class="device-card" aria-hidden="true"><img src="assets/device/device-ct-800.jpg" alt="" /><span>CT-800</span></div>
+        <div class="device-card" aria-hidden="true"><img src="assets/device/device-hs-7000.jpg" alt="" /><span>HS-7000</span></div>
+        <div class="device-card" aria-hidden="true"><img src="assets/device/device-rm-800.jpg" alt="" /><span>Rm-800</span></div>
+        <div class="device-card" aria-hidden="true"><img src="assets/device/device-sp-1p.jpg" alt="" /><span>SP-1p</span></div>
+        <div class="device-card" aria-hidden="true"><img src="assets/device/device-ultra-q.jpg" alt="" /><span>ULTRA Q</span></div>
+        <div class="device-card" aria-hidden="true"><img src="assets/device/device-us-4000.jpg" alt="" /><span>US-4000</span></div>
+        <div class="device-card" aria-hidden="true"><img src="assets/device/device-dayrona-optos.jpg" alt="" /><span>dayrona optos</span></div>
+        <div class="device-card" aria-hidden="true"><img src="assets/device/device-humphrey-field-analyzer3.jpg" alt="" /><span>humphrey field analyzer3</span></div>
+        <div class="device-card" aria-hidden="true"><img src="assets/device/device-iol-master-700.jpg" alt="" /><span>iol master 700</span></div>
+        <div class="device-card" aria-hidden="true"><img src="assets/device/device-lensar.jpg" alt="" /><span>lensar</span></div>
+        <div class="device-card" aria-hidden="true"><img src="assets/device/device-lumera700.jpg" alt="" /><span>lumera700</span></div>
+        <div class="device-card" aria-hidden="true"><img src="assets/device/device-pentacam-hr.jpg" alt="" /><span>pentacam hr</span></div>
       </div>
     </div>
   </section>
@@ -737,7 +849,7 @@
 
       <div class="doctor-grid">
         <div class="doctor-card">
-          <img class="photo photo-default" src="https://www.figma.com/api/mcp/asset/30428533-9784-4eb0-897a-f91f685d7ce8" alt="염동주 대표원장" />
+          <img class="photo photo-default" src="assets/doctors/yeom-default.jpg" alt="염동주 대표원장" />
           <img class="photo photo-hover" src="assets/doctors/yeom-hover.jpg" alt="" />
           <div class="content">
             <div class="info"><div class="name">염동주</div><div class="role">대표원장</div></div>
@@ -757,7 +869,7 @@
           </div>
         </div>
         <div class="doctor-card">
-          <img class="photo photo-default" src="https://www.figma.com/api/mcp/asset/e08b8b20-3681-4036-b8dd-c662725e33c3" alt="윤효성 대표원장" />
+          <img class="photo photo-default" src="assets/doctors/yoon-default.jpg" alt="윤효성 대표원장" />
           <img class="photo photo-hover" src="assets/doctors/yoon-hover.jpg" alt="" />
           <div class="content">
             <div class="info"><div class="name">윤효성</div><div class="role">대표원장</div></div>
@@ -777,7 +889,7 @@
           </div>
         </div>
         <div class="doctor-card">
-          <img class="photo photo-default" src="https://www.figma.com/api/mcp/asset/3052da70-4bab-4f7f-9c18-72c683c2db79" alt="정상준 대표원장" />
+          <img class="photo photo-default" src="assets/doctors/jeong-default.jpg" alt="정상준 대표원장" />
           <img class="photo photo-hover" src="assets/doctors/jeong-hover.jpg" alt="" />
           <div class="content">
             <div class="info"><div class="name">정상준</div><div class="role">대표원장</div></div>
@@ -798,7 +910,7 @@
           </div>
         </div>
         <div class="doctor-card">
-          <img class="photo photo-default" src="https://www.figma.com/api/mcp/asset/6df26be5-a3a9-4b8d-b3f7-cb1ca804d500" alt="양형모 대표원장" />
+          <img class="photo photo-default" src="assets/doctors/yang-default.jpg" alt="양형모 대표원장" />
           <img class="photo photo-hover" src="assets/doctors/yang-hover.jpg" alt="" />
           <div class="content">
             <div class="info"><div class="name">양형모</div><div class="role">대표원장</div></div>
@@ -854,6 +966,12 @@
   </section>
 
 </main>
+
+<button type="button" class="btn-top" id="btnTop" aria-label="맨 위로 이동">
+  <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M18 15l-6-6-6 6"/>
+  </svg>
+</button>
 
 <footer class="site-footer" data-header-theme="dark">
   <img class="footer-logo" src="assets/logo-white.svg" alt="강남스마일안과" />
@@ -935,6 +1053,24 @@
     updateHeader();
     window.addEventListener('scroll', onScroll, { passive:true });
     window.addEventListener('resize', updateHeader);
+  })();
+
+  // Top button: show after scrolling down, click to scroll to top
+  (function(){
+    const btnTop = document.getElementById('btnTop');
+    if(!btnTop) return;
+    const SHOW_AFTER = 400;
+
+    function toggleBtnTop(){
+      btnTop.classList.toggle('is-visible', window.scrollY > SHOW_AFTER);
+    }
+
+    btnTop.addEventListener('click', function(){
+      window.scrollTo({ top:0, behavior:'smooth' });
+    });
+
+    toggleBtnTop();
+    window.addEventListener('scroll', toggleBtnTop, { passive:true });
   })();
 </script>
 

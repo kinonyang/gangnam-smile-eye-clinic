@@ -147,14 +147,14 @@
     position:fixed;top:0;left:0;right:0;z-index:100;
     display:flex;align-items:center;justify-content:space-between;
     padding:13px 20px;
-    background:rgba(255,255,255,0.1);
+    background:rgba(255,255,255,0);
     backdrop-filter:blur(6px);
     -webkit-backdrop-filter:blur(6px);
     transition:background-color .25s ease, backdrop-filter .25s ease, box-shadow .25s ease;
   }
   .site-header.is-scrolled{
-    background:rgba(255,255,255,0.6);
-    backdrop-filter:blur(10px);
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(8px);
     -webkit-backdrop-filter:blur(12px);
     box-shadow:0 2px 12px rgba(0,0,0,0.06);
   }
@@ -315,7 +315,7 @@
   .target-item p{font-size:13px;margin:0;color:var(--ink);opacity:.8;}
 
   /* ---------- Differentiators ---------- */
-  .diff{padding:80px 20px;}
+  .diff{padding:80px 20px 100px;}
   .diff .inner{max-width:1004px;margin:0 auto;}
   .diff-grid{display:flex;flex-direction:column;gap:40px;margin-top:20px;}
   /* 모바일 비율: 필요한 값으로 여기서 조절 */
@@ -329,7 +329,7 @@
   .diff-card .mobile-text{display:inline;}
 
   /* ---------- Smile Lasik banner ---------- */
-  .lasik{padding:80px 20px 80px 20px;}
+  .lasik{padding:100px 20px 80px 20px;}
   .lasik .inner{max-width:1004px;margin:0 auto;}
   .lasik-video{
     margin-top:24px;border-radius:20px;overflow:hidden;position:relative;

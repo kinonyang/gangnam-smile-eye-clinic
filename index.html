@@ -147,7 +147,7 @@
     width:100%;
     background:var(--primary);
     color:#fff;
-    border-radius:14px;
+    border-radius:14px;display:inline-flex;align-items:center;justify-content:center;
     padding:18px;
     font-size:17px;
     font-weight:600;
@@ -352,7 +352,7 @@
   .privacy-modal.is-open{display:flex;}
   .privacy-modal-panel{
     position:relative;
-    width:100%;max-width:420px;max-height:min(640px,84vh);
+    width:100%;max-width:500px;max-height:min(640px,84vh);
     background:#fff;
     border-radius:20px;
     box-shadow:0 20px 50px rgba(0,10,60,0.25);
@@ -374,7 +374,7 @@
   .privacy-modal-close svg{width:18px;height:18px;}
   .privacy-modal-close:hover{background:var(--bg-soft);color:var(--ink);}
   .privacy-modal-title{
-    font-size:18px;font-weight:700;color:var(--ink);
+    font-size:18px;font-weight:600;color:var(--ink);
     margin:0 0 22px;text-align:center;
     line-height:1.5;
     letter-spacing:-.2px;
@@ -403,11 +403,58 @@
   }
   .privacy-modal-list li b{font-weight:700;}
   .privacy-modal-confirm{
-    width:45%;border-radius:24px;padding:13px 18px;margin-left:auto;margin-right: auto;
+    width:100%;border-radius:12px;padding:16px 18px;margin-left:auto;margin-right: auto;
     font-size:15px;font-weight:600;color:#fff;background:var(--primary);
     flex-shrink:0;
   }
   .privacy-modal-confirm:hover{background:var(--primary-deep);}
+
+  /* ---------- Consult-success modal ---------- */
+  .success-modal{
+    position:fixed;inset:0;z-index:1000;
+    display:none;
+    align-items:center;justify-content:center;
+    padding:20px;
+    background:rgba(10,14,30,0.55);
+    backdrop-filter:blur(2px);
+  }
+  .success-modal.is-open{display:flex;}
+  .success-modal-panel{
+    position:relative;
+    width:100%;max-width:500px;
+    background:#fff;
+    border-radius:30px;
+    box-shadow:0 20px 50px rgba(0,10,60,0.25);
+    padding:36px 24px 28px;
+    display:flex;flex-direction:column;align-items:center;
+    text-align:center;
+    animation:privacyModalIn .22s ease-out;
+  }
+  .success-modal-icon{
+    width:64px;height:64px;border-radius:50%;
+    
+    display:flex;align-items:center;justify-content:center;
+    flex-shrink:0;overflow:hidden;
+  }
+  .success-modal-icon img{width:50px;height:50px;object-fit:contain;display:block;}
+  .success-modal-title{
+    font-size:21px;font-weight:800;color:var(--primary);
+    margin-bottom:2px;line-height:1.4;letter-spacing:-.2px;
+  }
+  .success-modal-subtitle{
+    font-size:16px;font-weight:600;color:var(--ink);
+    margin:0 0 8px;line-height:1.5;
+  }
+  .success-modal-desc{
+    font-size:13px;font-weight:400;color:var(--gray);
+    margin:0 0 24px;line-height:1.4;
+  }
+  .success-modal-confirm{
+    width:100%;border-radius:12px;padding:14px 18px;
+    font-size:15px;font-weight:600;color:#fff;background:var(--primary);
+    flex-shrink:0;
+  }
+  .success-modal-confirm:hover{background:var(--primary-deep);}
 
   /* ---------- Target (recommended-for) ---------- */
   .target{
@@ -1174,6 +1221,20 @@
   </div>
 </div>
 
+<!-- CONSULT SUCCESS MODAL -->
+<div class="success-modal" id="successModal" role="dialog" aria-modal="true" aria-labelledby="successModalTitle">
+  <div class="success-modal-panel">
+    <div class="success-modal-icon">
+      <!-- 아이콘 교체 경로: assets/icons/success-check.png -->
+      <img src="assets/icons/success-check.png" alt="" />
+    </div>
+    <h3 class="success-modal-title" id="successModalTitle">상담 신청이 완료되었습니다</h3>
+    <p class="success-modal-subtitle">친절한 상담사분이 꼼꼼히 확인 중 입니다</p>
+    <p class="success-modal-desc">상담 신청이 많은 경우 다소 지연될 수 있으며,<br />02.553.0210로 연락주시면 보다 빠른 상담이 가능합니다.<br />감사합니다.</p>
+    <button type="button" class="success-modal-confirm" onclick="closeSuccessModal()">확인</button>
+  </div>
+</div>
+
 <footer class="site-footer" data-header-theme="dark">
   <img class="footer-logo" src="assets/logo-white.svg" alt="강남스마일안과" />
   <p style="margin-bottom: 4px;"><strong>강남스마일안과</strong> · 대표원장: 염동주 · 사업자등록번호: 153-23-02091</p><p style="margin-top: 0px">주소: 서울특별시 서초구 강남대로 405, 통영빌딩 4층, 6층</p>
@@ -1223,13 +1284,39 @@
     });
   }
 
+  // Consult success modal
+  var successModal = document.getElementById('successModal');
+
+  function openSuccessModal(){
+    if(!successModal) return;
+    document.documentElement.style.overflow = 'hidden';
+    document.body.style.overflow = 'hidden';
+    successModal.classList.add('is-open');
+  }
+
+  function closeSuccessModal(){
+    if(!successModal) return;
+    successModal.classList.remove('is-open');
+    document.documentElement.style.overflow = '';
+    document.body.style.overflow = '';
+  }
+
+  if(successModal){
+    successModal.addEventListener('click', function(e){
+      if(e.target === successModal){ closeSuccessModal(); }
+    });
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape' && successModal.classList.contains('is-open')){ closeSuccessModal(); }
+    });
+  }
+
   function handleConsultSubmit(e){
     e.preventDefault();
     const form = e.target;
     const name = form.name.value.trim();
     if(!name){ return false; }
-    alert(name + '님, 상담 신청이 접수되었습니다. 순차적으로 연락드리겠습니다.');
     form.reset();
+    openSuccessModal();
     return false;
   }
 
